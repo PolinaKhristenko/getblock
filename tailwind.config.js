@@ -1,4 +1,5 @@
 module.exports = {
+    // ...
   purge: {
     content: ['./public/**/*.html', './src/**/*.vue'],
     options: {
@@ -12,5 +13,22 @@ module.exports = {
       ],
     }
   },
-  // ...
+  theme: {
+    extend: {
+    }, 
+    colors: {
+      'blue': '#11B3FE',
+      'black': '#282828',
+      'white': '#F6F7F8',
+      'gray': '#E3EBEF',
+    },
+    fontSize :{
+      'h1': '3.125rem',
+    },
+    container: {
+      'xl': '1000px',
+      padding: {
+      }
+    },
+  },
 }
