@@ -21,6 +21,8 @@ module.exports = {
       'black': '#282828',
       'white': '#F6F7F8',
       'gray': '#E3EBEF',
+      'light-blue': '#EAF1F7',
+      
     },
     fontSize :{
       'h1': '3.125rem',
