@@ -14,7 +14,7 @@
                 <ul class="dropdown__list">
                   <li @click="setFrom(crypto.ticker)"
                     v-for="crypto in cryptos" v-bind:key="crypto"
-                    class="py-3 pl-5 items-center hover:bg-light-blue flex grow"> 
+                    class="py-3 pl-5 items-center hover:bg-light-blue"> 
                     <a class="flex"><img :src="`${crypto.image}`" alt='Crypto image' class="w-5 h-5"/><p class="mx-3 uppercase">{{crypto.ticker}}</p><p>{{crypto.name}}</p></a>
                   </li>
                 </ul>
@@ -47,7 +47,7 @@
         <div class="">
           <p class="text-base text-black">Your Ethereum address</p>
           <div class="flex"> 
-            <input type="text" class="border border-[#E3EBEF] border-solid" />
+            <input type="text" class="border border-[#E3EBEF] border-solid flex grow" />
             <button class="flex text-white font-bold bg-blue submit__btn uppercase hover:bg-[#0095E0]" type="submit">Exchange</button>
           </div>
         </div>
