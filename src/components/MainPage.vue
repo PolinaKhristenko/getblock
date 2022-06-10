@@ -1,11 +1,11 @@
 <template>
   <main>
     <section>
-      <div class="max-w-[1000px] mx-auto ">
+      <div class="max-w-[1000px] mx-auto">
         <h1 class="md:text-h1 text-[40px] text-black font-light mb-4">Crypto Exchange</h1>
         <h6 class="text-xl text-black">Exchange fast and easy</h6>
 
-        <div class="flex items-center mt-16"> 
+        <div class="flex items-center mt-16 flex-col sm:flex-row"> 
 
           <div class="dropdown__wrapper max-w-md w-full relative" v-bind:class="{ active: fromIsActive }"> <!--FROM currency-->
 
@@ -22,7 +22,7 @@
                 <img src="../assets/img/arrow-down.svg" class="w-4 h-4" alt="Options arrow"/>
               </div> <!--Chosen currency-->
 
-              <div class="dropdown__options"> <!--Dropdown-->
+              <div class="dropdown__options relative z-10"> <!--Dropdown-->
                 <ul class="dropdown__list w-full absolute top-[-54px] left-0 border 
                 border-[#C1D9E5] border-solid h-36 overflow-y-scroll rounded-[5px]">
 
@@ -45,7 +45,7 @@
           </div>
 
 
-          <a class="mx-7 flex"> <!--Exchange sign-->
+          <a class="mx-7 flex rotate-90 sm:rotate-0 my-4 sm:my-0"> <!--Exchange sign-->
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M7.99 17H20V19H7.99V22L4 18L7.99 14V17Z" fill="#11B3FE"/>
               <path d="M16.01 8H4V10H16.01V13L20 9L16.01 5V8Z" fill="#11B3FE"/>
@@ -94,10 +94,10 @@
         <div class="">
           <p class="text-[#c12d2d] mb-8 h-3">{{error}}</p> <!--Minimal amoint error-->
           <p class="text-base text-black mb-2">Your Ethereum address</p>
-          <div class="flex"> 
-            <input type="text" class="border rounded-[5px] border-[#E3EBEF] border-solid flex grow" />
+          <div class="flex flex-col sm:flex-row sm:gap-8"> 
+            <input type="search" class="border rounded-[5px] border-[#E3EBEF] border-solid flex grow py-3.5 mb-4 sm:mb-0" />
             <button class="flex text-white font-bold bg-blue py-4 px-[59px]
-            uppercase hover:bg-[#0095E0] ml-8 rounded-[5px]" type="submit">Exchange</button>
+            uppercase hover:bg-[#0095E0] rounded-[5px] justify-center" type="submit">Exchange</button>
           </div>
           <p class="text-[#c12d2d] h-3">{{errorPair}}</p> <!--Disabled pair error -->
         </div>
