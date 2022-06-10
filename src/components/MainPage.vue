@@ -9,8 +9,8 @@
 
           <div class="dropdown__wrapper max-w-md w-full relative" v-bind:class="{ active: fromIsActive }"> <!--FROM currency-->
 
-              <input type="text" @input="changeFrom($event)"
-              :placeholder="'Search'" :value="`${minimalVal}`"
+              <input type="text" @input="changeFrom()"
+              :placeholder="minimalVal" v-model="newFromVal"
               class="border border-[#E3EBEF] border-solid py-3.5 pl-4 
               rounded-[5px] pr-3 max-w-md w-full"/> <!--Value input-->
 
@@ -55,8 +55,8 @@
 
           <div class="dropdown__wrapper max-w-md w-full relative" v-bind:class="{ active: toIsActive }">  <!--TO currency-->
 
-              <input type="text" :placeholder="'Search'" 
-              :value="`${estimatedVal}`"
+              <input type="text" placeholder="" 
+              :value="estimatedVal"
               class="border border-[#E3EBEF] border-solid py-3.5 pl-4 
               rounded-[5px] pr-3 max-w-md w-full"/> <!--Value input-->
 
@@ -128,7 +128,7 @@ export default {
       },
       fromCrypto: "",
       minimalVal: "",
-      newFromVal: "",
+      newFromVal: null,
       toCrypto: "",
       estimatedVal: "",
       fromIsActive: false,
@@ -184,8 +184,12 @@ export default {
           const from = this.fromCrypto;
           const to = this.toCrypto;
         try {
-          const urlEstim = `https://api.changenow.io/v1/exchange-amount/${this.minimalVal}/${from}_${to}/?api_key=${this.apiKey}`;
-
+          if (this.newFromVal) {
+            var urlEstim = `https://api.changenow.io/v1/exchange-amount/${this.newFromVal}/${from}_${to}/?api_key=${this.apiKey}`;
+          } else {
+            var urlEstim = `https://api.changenow.io/v1/exchange-amount/${this.minimalVal}/${from}_${to}/?api_key=${this.apiKey}`;
+          }
+          
           const responseEstim = await axios.get(urlEstim);
 
           if (responseEstim) {
@@ -199,15 +203,16 @@ export default {
         }
       } 
     }, // Sets estimated amount 
-    changeFrom(e) {
-      this.newFromVal = e.target.value;
-      if (this.newFromVal < this.minimalVal) {
-        this.error = `This amount should be more than ${this.minimalVal}`;
-        this.estimatedVal = `-`;
-      } else {
-        this.error = '';
-        e.target.value = this.newFromVal;
-        this.getEstimated();
+    changeFrom() {
+      if (this.fromCrypto && this.toCrypto){
+        console.log(this.newFromVal)
+        if (this.newFromVal < this.minimalVal) {
+          this.error = `This amount should be more than ${this.minimalVal}`;
+          this.estimatedVal = `-`;
+        } else {
+          this.error = '';
+          this.getEstimated();
+        }
       }
     }, // Changes fromVal depending on input value
   },
