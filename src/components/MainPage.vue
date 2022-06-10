@@ -1,18 +1,18 @@
 <template>
   <main>
     <section>
-      <div class="max-w-[1000px] mx-auto">
+      <div class="lg:max-w-[1032px] md:max-w-[640px] mx-auto max-w-full px-[16px]">
         <h1 class="md:text-h1 text-[40px] text-black font-light mb-4">Crypto Exchange</h1>
         <h6 class="text-xl text-black">Exchange fast and easy</h6>
 
         <div class="flex items-center mt-16 flex-col sm:flex-row"> 
 
-          <div class="dropdown__wrapper max-w-md w-full relative" v-bind:class="{ active: fromIsActive }"> <!--FROM currency-->
+          <div class="dropdown__wrapper max-w-full sm:max-w-md w-full relative" v-bind:class="{ active: fromIsActive }"> <!--FROM currency-->
 
               <input type="text" @input="changeFrom()"
               :placeholder="minimalVal" v-model="newFromVal"
               class="border border-[#E3EBEF] border-solid py-3.5 pl-4 
-              rounded-[5px] pr-3 max-w-md w-full"/> <!--Value input-->
+              rounded-[5px] pr-3 max-w-full sm:max-w-md w-full"/> <!--Value input-->
 
               <div class="absolute top-2 h-10 flex cursor-pointer
               border-l border-gray border-solid items-center pl-9 right-6" 
@@ -23,13 +23,17 @@
               </div> <!--Chosen currency-->
 
               <div class="dropdown__options relative z-10"> <!--Dropdown-->
-                <ul class="dropdown__list w-full absolute top-[-54px] left-0 border 
-                border-[#C1D9E5] border-solid h-36 overflow-y-scroll rounded-[5px]">
+                <ul class="dropdown__list w-full absolute top-[-54px] left-0 border bg-white
+                border-[#C1D9E5] border-solid h-[194px] overflow-y-scroll rounded-[5px]">
 
-                  <input type="search" v-model="fromSearch" 
+                  <input type="text" v-model="fromSearch" 
                   class="py-3.5 pl-4 pr-3 rounded-[5px] max-w-md w-full 
                   border-b border-[#E3EBEF] border-solid"
                   :placeholder="'Search'" /> <!--Search input-->
+
+                  <a @click="toggleFrom()">
+                    <img src="../assets/img/close.svg" class="w-4 h-4 absolute right-4 z-20 top-[17px]" alt="Close the list"/>
+                  </a> <!--Close-->
 
                   <li @click="setFrom(crypto.ticker, crypto.image)"
                     v-for="crypto in fromSearchHandler" v-bind:key="crypto"
@@ -53,12 +57,12 @@
           </a>
           
 
-          <div class="dropdown__wrapper max-w-md w-full relative" v-bind:class="{ active: toIsActive }">  <!--TO currency-->
+          <div class="dropdown__wrapper max-w-full sm:max-w-md w-full relative" v-bind:class="{ active: toIsActive }">  <!--TO currency-->
 
               <input type="text" placeholder="" 
               :value="estimatedVal"
               class="border border-[#E3EBEF] border-solid py-3.5 pl-4 
-              rounded-[5px] pr-3 max-w-md w-full"/> <!--Value input-->
+              rounded-[5px] pr-3 max-w-full sm:max-w-md w-full"/> <!--Value input-->
 
               <div class="absolute top-2 h-10 flex cursor-pointer
               border-l border-gray border-solid items-center pl-9 right-6" 
@@ -70,12 +74,16 @@
 
               <div class="dropdown__options"> <!--Dropdown-->
                 <ul class="dropdown__list w-full absolute top-[-54px] left-0 border border-[#C1D9E5] 
-                border-solid h-36 overflow-y-scroll rounded-[5px]">
+                border-solid h-[194px] overflow-y-scroll rounded-[5px] bg-white">
 
-                  <input type="search" v-model="toSearch" 
+                  <input type="text" v-model="toSearch" 
                   class="py-3.5 pl-4 pr-3 rounded-[5px] max-w-md w-full
                   border-b border-[#E3EBEF] border-solid"
                   :placeholder="'Search'" /> <!--Search input-->
+
+                  <a @click="toggleTo()">
+                    <img src="../assets/img/close.svg" class="w-4 h-4 absolute right-4 z-20 top-[17px]" alt="Close the list"/>
+                  </a> <!--Close-->
 
                   <li @click="setTo(crypto.ticker, crypto.image)" 
                     v-for="crypto in toSearchHandler" v-bind:key="crypto"
@@ -95,7 +103,7 @@
           <p class="text-[#c12d2d] mb-8 h-3">{{error}}</p> <!--Minimal amoint error-->
           <p class="text-base text-black mb-2">Your Ethereum address</p>
           <div class="flex flex-col sm:flex-row sm:gap-8"> 
-            <input type="search" class="border rounded-[5px] border-[#E3EBEF] border-solid flex grow py-3.5 mb-4 sm:mb-0" />
+            <input type="text" class="border rounded-[5px] border-[#E3EBEF] border-solid flex grow py-3.5 mb-4 sm:mb-0" />
             <button class="flex text-white font-bold bg-blue py-4 px-[59px]
             uppercase hover:bg-[#0095E0] rounded-[5px] justify-center" type="submit">Exchange</button>
           </div>
@@ -189,7 +197,7 @@ export default {
           } else {
             var urlEstim = `https://api.changenow.io/v1/exchange-amount/${this.minimalVal}/${from}_${to}/?api_key=${this.apiKey}`;
           }
-          
+
           const responseEstim = await axios.get(urlEstim);
 
           if (responseEstim) {
@@ -245,5 +253,9 @@ export default {
   .dropdown__wrapper.active .dropdown__options {
     transform: scaleY(1);
     display: flex;
+  }
+  
+  input::placeholder {
+    color: #282828;
   }
 </style>

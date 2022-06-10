@@ -28,6 +28,9 @@ module.exports = {
       'h1': '3.125rem',
     },
     container: {
+      'mb': '100%',
+      'tb': '540px',
+      'nt': '768',
       'xl': '1000px',
       padding: {
       }
