@@ -1,4 +1,6 @@
-# Getblock cryptocurrency converter
+# Getblock cryptocurrency converter using Vue.js
+
+### Link: polinatimofeeva.github.io/getblock/
 
 ## Main screen:
 
@@ -28,4 +30,30 @@ Main requirements:
 - Mockup: https://www.figma.com/file/fzcnpN2Pm9YY8CIpWbP3NE/Frontend-Test?node-id=0%3A1;
 - Use Tailwind when styling.
 
+
+
+
+
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
 
