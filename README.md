@@ -1,6 +1,6 @@
 # Getblock cryptocurrency converter using Vue.js
 
-### Link: polinatimofeeva.github.io/getblock/
+Link: polinatimofeeva.github.io/getblock/
 
 ## Main screen:
 
