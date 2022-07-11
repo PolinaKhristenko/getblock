@@ -1,4 +1,4 @@
-# Getblock cryptocurrency converter using Vue.js
+# Getblock cryptocurrency converter (Vue.js & Tailwind)
 
 ### Link: [polinatimofeeva.github.io/getblock/](https://polinatimofeeva.github.io/getblock/)
 
